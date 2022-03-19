@@ -1,0 +1,4 @@
+Add
+Eat
+Find
+Kill

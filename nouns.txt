@@ -1,7 +1,7 @@
 pig
 cow
-diamonds
-emeralds
+diamond
+emerald
 piglin
 villager
 pigman

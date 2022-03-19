@@ -15,15 +15,20 @@ def random_nouns(count, x, spacing) -> list:
     return [[(x, spacing * i), random.choice(nouns)] for i in range(count)]
 
 def generate_meme(meme) -> list:
+    verb = random.choice(open('verbs.txt', 'r').readlines())[:-1]
+    noun = random.choice(open('nouns.txt', 'r').readlines())[:-1]
+    noun2 = random.choice(open('nouns.txt', 'r').readlines())[:-1]
+    
     texts = {
         "peace": random_phrase(),
-        "spongebob": random_nouns(5, 350, 230)
+        "spongebob": random_nouns(5, 350, 230),
+        "uno": [[(100, 150), f"{verb} {noun}s"], [(300, 20), f"{noun2}s"]]
     }
 
     return texts[meme]
 
 def main():
-    meme = random.choice(["peace", "spongebob"])
+    meme = random.choice(["peace", "spongebob", "uno"])
     caption = generate_meme(meme)
 
     img = Image.open(f"formats/{meme}.png")
