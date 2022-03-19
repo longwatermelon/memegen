@@ -1,0 +1,12 @@
+pig
+cow
+diamonds
+emeralds
+piglin
+villager
+pigman
+iron golem
+dog
+creeper
+zombie
+skeleton
