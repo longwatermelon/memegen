@@ -18,16 +18,19 @@ def generate_meme(meme) -> list:
     verb = random.choice(open('verbs.txt', 'r').readlines())[:-1]
     noun = random.choice(open('nouns.txt', 'r').readlines())[:-1]
     noun2 = random.choice(open('nouns.txt', 'r').readlines())[:-1]
+    action = random.choice(open('actions.txt', 'r').readlines())[:-1]
+    noun3 = random.choice(open('nouns.txt', 'r').readlines())[:-1]
     
     texts = {
         "peace": random_phrase(),
-        "uno": [[(100, 150), f"{verb} {noun}s"], [(300, 20), f"{noun2}s"]]
+        "uno": [[(100, 150), f"{verb} {noun}s"], [(300, 20), f"{noun2}s"]],
+        "bonjour": [[(0, 0), f"{noun3}s when the {noun} {action} {noun2}"]]
     }
 
     return texts[meme]
 
 def main():
-    meme = random.choice(["peace", "uno"])
+    meme = random.choice(["peace", "uno", "bonjour"])
     caption = generate_meme(meme)
 
     img = Image.open(f"formats/{meme}.png")
