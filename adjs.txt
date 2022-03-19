@@ -1,0 +1,4 @@
+dead
+alive
+delicious
+gone
