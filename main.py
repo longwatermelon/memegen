@@ -21,14 +21,13 @@ def generate_meme(meme) -> list:
     
     texts = {
         "peace": random_phrase(),
-        "spongebob": random_nouns(5, 350, 230),
         "uno": [[(100, 150), f"{verb} {noun}s"], [(300, 20), f"{noun2}s"]]
     }
 
     return texts[meme]
 
 def main():
-    meme = random.choice(["peace", "spongebob", "uno"])
+    meme = random.choice(["peace", "uno"])
     caption = generate_meme(meme)
 
     img = Image.open(f"formats/{meme}.png")
