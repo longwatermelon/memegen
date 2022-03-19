@@ -27,7 +27,7 @@ def generate_meme(meme) -> list:
         "uno": [[(100, 150), f"{verb} {noun}s"], [(300, 20), f"{noun2}s"]],
         "bonjour": [[(0, 0), f"{noun3}s when the {noun} {action}s the {noun2}"]],
         "incredible": [[(50, 150), f"Me when I {action} the {noun}"], [(600, 150), f"It's {adjective}"]],
-        "death": [[(0, 0), f"The {noun} when I {action} the {noun2}"]]
+        "death": [[(250, 0), f"The {noun} when I {action} the {noun2}"]]
     }
 
     return texts[meme]
