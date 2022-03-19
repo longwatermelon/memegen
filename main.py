@@ -24,7 +24,7 @@ def generate_meme(meme) -> list:
     texts = {
         "peace": random_phrase(),
         "uno": [[(100, 150), f"{verb} {noun}s"], [(300, 20), f"{noun2}s"]],
-        "bonjour": [[(0, 0), f"{noun3}s when the {noun} {action} {noun2}"]]
+        "bonjour": [[(0, 0), f"{noun3}s when the {noun} {action} the {noun2}"]]
     }
 
     return texts[meme]
