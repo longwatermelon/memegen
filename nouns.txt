@@ -1,7 +1,5 @@
 pig
 cow
-diamond
-emerald
 piglin
 villager
 pigman
@@ -10,3 +8,5 @@ dog
 creeper
 zombie
 skeleton
+wither
+ender dragon

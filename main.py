@@ -1,11 +1,17 @@
 from PIL import Image, ImageDraw, ImageFont
 import random
 
+def plural(action):
+    if len(action.split()) > 1:
+        return ' '.join([f"{action.split()[0]}s", action.split()[1]])
+    else:
+        return action
+
 def random_phrase() -> list:
     nouns = open("nouns.txt", "r").readlines()
     actions = open("actions.txt", "r").readlines()
 
-    ret = f"When the {random.choice(nouns)[:-1]} {random.choice(actions)[:-1]}s you"
+    ret = f"When the {random.choice(nouns)[:-1]} {plural(random.choice(actions)[:-1])} you"
 
     return [[(0, 0), ret]]
 
@@ -25,20 +31,21 @@ def generate_meme(meme) -> list:
     texts = {
         "peace": random_phrase(),
         "uno": [[(100, 150), f"{verb} {noun}s"], [(300, 20), f"{noun2}s"]],
-        "bonjour": [[(0, 0), f"{noun3}s when the {noun} {action}s the {noun2}"]],
+        "bonjour": [[(0, 0), f"{noun3}s when the {noun} {plural(action)} the {noun2}"]],
         "incredible": [[(50, 150), f"Me when I {action} the {noun}"], [(600, 150), f"It's {adjective}"]],
-        "death": [[(250, 0), f"The {noun} when I {action} the {noun2}"]]
+        "death": [[(250, 0), f"The {noun} when I {action} the {noun2}"]],
+        "waiting": [[(10, 0), f"{random.choice(['Me', noun])} waiting for the {noun2} to {action} {random.choice(['my', 'the'])} {noun3}"]]
     }
 
     return texts[meme]
 
 def main():
-    meme = random.choice(["peace", "uno", "bonjour", "incredible", "death"])
+    meme = random.choice(["peace", "uno", "bonjour", "incredible", "death", "waiting"])
     caption = generate_meme(meme)
 
     img = Image.open(f"formats/{meme}.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype('impact.ttf', size=18)
+    font = ImageFont.truetype('impact.ttf', size=24)
     print(caption)
 
     for l in caption:
