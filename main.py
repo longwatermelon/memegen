@@ -5,7 +5,7 @@ def plural(action):
     if len(action.split()) > 1:
         return ' '.join([f"{action.split()[0]}s", action.split()[1]])
     else:
-        return action
+        return f"{action}s"
 
 def random_phrase() -> list:
     nouns = open("nouns.txt", "r").readlines()
