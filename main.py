@@ -49,6 +49,13 @@ def main():
         draw.text((l[0][0] + 1, l[0][1] + 1), l[1], 'black', font)
 
         draw.text(l[0], l[1], 'white', font)
+
     img.save('out.png')
 
-main()
+    with open("caption", "w") as f:
+        for i in caption:
+            f.write(i[1])
+            f.write('.\n')
+
+if __name__ == '__main__':
+    main()

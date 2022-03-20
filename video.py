@@ -5,12 +5,14 @@ import os
 import moviepy.editor as mpe
 import pyttsx3
 import time
+from gtts import gTTS
 
 avg_w = 0
 avg_h = 0
 
 for i in range(int(sys.argv[1])):
     os.system("python3 main.py")
+    os.system(f"mv caption memes/{i}.txt")
     im = Image.open("out.png")
     width, height = im.size
     avg_w += width
@@ -22,20 +24,15 @@ avg_w = int(avg_w / int(sys.argv[1]))
 avg_h = int(avg_h / int(sys.argv[1]))
 count = 0
 
-for file in os.listdir("memes"):
-    im = Image.open(f"memes/{file}")
+for i in range(len(os.listdir("memes")) // 2):
+    im = Image.open(f"memes/{i}.png")
     width, height = im.size
     imr = im.resize((avg_w, avg_h), Image.ANTIALIAS)
     imr.save(f"video/{count}.png")
     count += 1
 
 count = 0
-engine = pyttsx3.init()
-engine.setProperty('rate', 125)
-engine.setProperty('volume', 1.0)
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
-# engine.say('hello world')
+# # engine.say('hello world')
 # engine.runAndWait()
 # engine.stop()
 
@@ -46,16 +43,19 @@ for i in range(len(os.listdir("video"))):
     out.release()
 
     clip = mpe.VideoFileClip(f"videos/{i}.avi")
-    # engine.save_to_file("hello world", "tts.mp3")
-    # engine.runAndWait()
+    os.system(f"python3 tts.py \"{open(f'memes/{i}.txt', 'r').read()}\"")
+    time.sleep(1)
     # time.sleep(1)
-    # audio = mpe.AudioFileClip("tts.mp3")
+    audio = mpe.AudioFileClip("tts.mp3")
+    # obj = gTTS(text="hello world", lang="en", slow=False, tld="co.uk")
+    # obj.save(f"{i}.mp3")
 
-    # fclip = clip.set_audio(audio)
-    clips.append(clip)
+    fclip = clip.set_audio(audio)
+    clips.append(fclip)
 
     print(f"Clip {i}")
 
+    time.sleep(1)
     # out = cv2.VideoWriter("out.avi", cv2.VideoWriter_fourcc(*'DIVX'), 0.2, (avg_w, avg_h))
     
     # for file in os.listdir("video"):
@@ -66,7 +66,7 @@ for i in range(len(os.listdir("video"))):
 final = mpe.concatenate_videoclips(clips, method="compose")
 audio = mpe.AudioFileClip("music.mp3")
 audio = audio.set_duration(final.duration)
-final_audio = mpe.CompositeAudioClip([audio])
+final_audio = mpe.CompositeAudioClip([final.audio, audio])
 final = final.set_audio(final_audio)
 
 final.write_videofile("out.mp4")
@@ -78,3 +78,4 @@ final.write_videofile("out.mp4")
 # final_clip = clip.set_audio(final_audio)
 # final_clip.write_videofile("out.mp4")
 
+os.system("rm memes/* video/* videos/* tts.mp3 out.png")
