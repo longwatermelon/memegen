@@ -1,5 +1,4 @@
 dead
 alive
 delicious
-gone
 angry
