@@ -32,12 +32,13 @@ def generate_meme(meme) -> list:
         "peace": random_phrase(),
         "uno": [[(100, 150), f"{verb} {noun}s"], [(300, 20), f"{noun2}s"]],
         "incredible": [[(50, 150), f"Me when I {action} the {noun}"], [(600, 150), f"It's {adjective}"]],
+        "joey": [[(0, 0), f"Me when I {action} the {noun}"]]
     }
 
     return texts[meme]
 
 def main():
-    meme = random.choice(["peace", "uno", "incredible"])
+    meme = random.choice(["peace", "uno", "incredible", "joey"])
     caption = generate_meme(meme)
 
     img = Image.open(f"formats/{meme}.png")
